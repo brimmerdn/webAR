@@ -28,6 +28,8 @@
       });
   
       var video, toggleSound;
+      var userDevice = getMobileOperatingSystem();
+    
       if (userDevice == "iOS") {
         video = document.getElementById('arvideo');  
         toggleSound = document.body.addEventListener('touchstart', function(){
