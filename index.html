@@ -27,18 +27,18 @@
               }
             });
     </script>
-    
+    <a-assets>
+      <video id="sintel" autoplay loop="true" src="/webAR/video/sintel.mp4"></video>
+  </a-assets>
+
+  <a-assets>
+      <a-asset-item id="scotchgreen" src="/webAR/assets/scotchgreen.gltf"></a-asset-item>
+  </a-assets>
     <body style='margin : 0px; overflow: hidden;'>
         <!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
         <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
 
-            <a-assets>
-                <video id="sintel" autoplay loop="true" src="/webAR/video/sintel.mp4"></video>
-            </a-assets>
-
-            <a-assets>
-                <a-asset-item id="scotchgreen" src="/webAR/assets/scotchgreen.gltf"></a-asset-item>
-            </a-assets>
+            
             
             <a-marker id="sintelmarker" preset="hiro">
                 <!-- Using the asset management system. -->
