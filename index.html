@@ -1,0 +1,59 @@
+<!doctype HTML>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    </head>
+    <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/jeromeetienne/AR.js/2.1.4/aframe/build/aframe-ar.js"></script>
+    
+    <!-- add this script in order to load a large set of 3D model extensions-->
+    <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+    <script>
+      AFRAME.registerComponent('vidhandler', {
+              init: function () {
+                this.toggle = false;
+                document.querySelector("#sintel").pause(); //reference to the video
+              },
+              tick:function(){  
+              if(document.querySelector("#sintelmarker").object3D.visible == true){
+                if(!this.toggle){
+                  this.toggle = true;
+                  document.querySelector("#sintel").play();
+                }
+              }else{
+                this.toggle = false;
+                document.querySelector("#sintel").pause();
+              }
+              }
+            });
+    </script>
+    
+    <body style='margin : 0px; overflow: hidden;'>
+        <!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
+        <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
+
+            <a-assets>
+                <video id="sintel" autoplay loop="true" src="/video/sintel.mp4"></video>
+            </a-assets>
+
+            <a-assets>
+                <a-asset-item id="scotchgreen" src="/assets/scotchgreen.gltf"></a-asset-item>
+            </a-assets>
+            
+            <a-marker id="sintelmarker" preset="hiro">
+                <!-- Using the asset management system. -->
+                <a-video vidhandler src="#sintel" rotation="90 0 180" position="0 0 0" scale="1.77 1 1"></a-video>
+            </a-marker>
+
+            <a-marker id="animated-marker" type='barcode' value='6'>
+                <a-entity
+                    gltf-model="#scotchgreen"
+                    scale="2">
+                </a-entity>
+            </a-marker-->
+            
+            <!-- use this <a-entity camera> to support multiple-markers, otherwise use <a-marker-camera> instead of </a-marker> -->
+            <a-entity camera></a-entity>
+        </a-scene>
+    </body>
+</html>
