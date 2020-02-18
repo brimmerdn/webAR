@@ -10,46 +10,76 @@
     <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
     <script>
       AFRAME.registerComponent('vidhandler', {
-              init: function () {
-                this.toggle = false;
-                document.querySelector("#sintel").pause(); //reference to the video
-              },
-              tick:function(){  
-              if(document.querySelector("#sintelmarker").object3D.visible == true){
-                if(!this.toggle){
-                  this.toggle = true;
-                  document.querySelector("#sintel").play();
-                }
-              }else{
-                this.toggle = false;
-                document.querySelector("#sintel").pause();
-              }
-              }
-            });
+        init: function () {
+          this.toggle = false;
+          document.querySelector("#arvideo").pause(); //reference to the video
+        },
+        tick:function(){  
+          if(document.querySelector("#arvideomarker").object3D.visible == true){
+            if(!this.toggle){
+              this.toggle = true;
+              document.querySelector("#arvideo").play();
+            }
+          }else{
+            this.toggle = false;
+            document.querySelector("#arvideo").pause();
+          }
+        }
+      });
+  
+      var video, toggleSound;
+      if (userDevice == "iOS") {
+        video = document.getElementById('arvideo');  
+        toggleSound = document.body.addEventListener('touchstart', function(){
+          if(video.muted === true){
+            video.muted=false;
+          } else if(video.muted === false){
+            video.muted=true;
+          }
+          if(video.play === true){
+            video.play=false;
+          } else if(video.play === false){
+            video.play=true;
+          }
+        });  
+      }
+          
+      function getParameterByName(name) {
+          name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+          var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+              results = regex.exec(location.search);
+          return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+	
+	    function getMobileOperatingSystem() {
+        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+        // Windows Phone must come first because its UA also contains "Android"
+        if (/windows phone/i.test(userAgent)) {
+          return "Windows Phone";
+        }
+        if (/android/i.test(userAgent)) {
+          return "Android";
+        }
+        // iOS detection from: http://stackoverflow.com/a/9039885/177710
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+          return "iOS";
+        }
+        return "unknown";
+  	  }
+    
     </script>
     
     <body style='margin : 0px; overflow: hidden;'>
       <a-assets>
-        <video id="sintel" autoplay muted="true" loop="true" src="/webAR/video/sintel.mp4"></video>
-      </a-assets>
-    
-      <a-assets>
-          <a-asset-item id="scotchgreen" src="/webAR/assets/scotchgreen.gltf"></a-asset-item>
+        <video id="arvideo" autoplay muted="true" loop="true" src="/webAR/video/sintel.mp4"></video>
       </a-assets>
         <!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
         <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
-            <a-marker id="sintelmarker" preset="hiro">
+            <a-marker id="arvideomarker" type="pattern" url="/webAR/assets/pattern-webAR.patt">
                 <!-- Using the asset management system. -->
-                <a-video vidhandler src="#sintel" rotation="90 0 180" position="0 0 0" scale="1.77 1 1"></a-video>
+                <a-video vidhandler src="#arvideo" rotation="90 0 180" position="0 0 0" scale="1.77 1 1"></a-video>
             </a-marker>
-
-            <a-marker id="animated-marker" type='barcode' value='6'>
-                <a-entity
-                    gltf-model="#scotchgreen"
-                    scale="2">
-                </a-entity>
-            </a-marker-->
-            
             <!-- use this <a-entity camera> to support multiple-markers, otherwise use <a-marker-camera> instead of </a-marker> -->
             <a-entity camera></a-entity>
         </a-scene>
