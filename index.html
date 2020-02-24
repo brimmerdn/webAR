@@ -33,7 +33,7 @@
       var userDevice = getMobileOperatingSystem();
     
       if (userDevice == "iOS" || userDevice == "Android") {
-        video = document.querySelector('arvideo');  
+        video = document.querySelector('#arvideo');  
         toggleSound = document.body.addEventListener('touchstart', function(){
           if(video.muted === true){
             video.muted=false;
