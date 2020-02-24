@@ -19,12 +19,12 @@
             if(!this.toggle){
               this.toggle = true;
               document.querySelector("#arvideo").play();
-	      document.querySelector("#arvideo").unmute();
+	      document.querySelector("#arvideo").mute=false;
             }
           }else{
             this.toggle = false;
             document.querySelector("#arvideo").pause();
- 	    document.querySelector("#arvideo").mute();
+ 	    document.querySelector("#arvideo").mute=true;
           }
         }
       });
