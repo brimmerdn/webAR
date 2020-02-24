@@ -19,10 +19,12 @@
             if(!this.toggle){
               this.toggle = true;
               document.querySelector("#arvideo").play();
+	      document.querySelector("#arvideo").unmute();
             }
           }else{
             this.toggle = false;
             document.querySelector("#arvideo").pause();
+ 	    document.querySelector("#arvideo").mute();
           }
         }
       });
@@ -74,7 +76,7 @@
     
     <body style='margin : 0px; overflow: hidden;'>
       <a-assets>
-        <video id="arvideo" loop="true" src="/webAR/video/sintel.mp4"></video>
+        <video id="arvideo" muted="true" loop="true" src="/webAR/video/sintel.mp4"></video>
       </a-assets>
         <!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
         <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
