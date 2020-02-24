@@ -32,9 +32,12 @@
       var video, toggleSound;
       var userDevice = getMobileOperatingSystem();
     
-      if (userDevice == "iOS" || userDevice == "Android") {
+      
         video = document.querySelector('#arvideo');  
-        toggleSound = document.body.addEventListener('touchstart', function(){
+        
+	 video.addEventListener('touchstart', touchStartHandler, false);
+	      
+	 function touchStartHandler(event){
           if(video.muted === true){
             video.muted=false;
           } else if(video.muted === false){
@@ -45,8 +48,8 @@
           } else if(video.play === false){
             video.play=true;
           }
-        });  
-      }
+        }
+      
           
       function getParameterByName(name) {
           name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
