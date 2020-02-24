@@ -19,7 +19,7 @@
             if(!this.toggle){
               this.toggle = true;
               document.querySelector("#arvideo").play();
-	      //document.querySelector("#arvideo").muted=false;
+	       //document.querySelector("#arvideo").muted=false;
             }
           }else{
             this.toggle = false;
@@ -33,7 +33,7 @@
       var userDevice = getMobileOperatingSystem();
     
       if (userDevice == "iOS" || userDevice == "Android") {
-        video = document.getElementById('arvideo');  
+        video = document.querySelector('arvideo');  
         toggleSound = document.body.addEventListener('touchstart', function(){
           if(video.muted === true){
             video.muted=false;
@@ -55,7 +55,7 @@
           return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
       }
 	
-	    function getMobileOperatingSystem() {
+     function getMobileOperatingSystem() {
         var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
         // Windows Phone must come first because its UA also contains "Android"
