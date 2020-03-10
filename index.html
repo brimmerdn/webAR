@@ -18,32 +18,49 @@
           if(document.querySelector("#arvideomarker").object3D.visible == true){
             if(!this.toggle){
               this.toggle = true;
-              document.querySelector("#arvideo").play();
+              //document.querySelector("#arvideo").play();
 	       //document.querySelector("#arvideo").muted=false;
             }
           }else{
             this.toggle = false;
-            document.querySelector("#arvideo").pause();
+            //document.querySelector("#arvideo").pause();
  	    //document.querySelector("#arvideo").muted=true;
           }
         }
         });	    
     </script>
     
+
     <body style='margin : 0px; overflow: hidden;'>
-      
+
         <!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
         <a-scene id="arscene" embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
+            
+
             <a-assets>
-              <video id="arvideo" muted="true" loop="true" src="/webAR/video/sintel.mp4"></video>
+              <video id="arvideo" width="320" height="176" controls="controls" preload muted="true" loop="true" src="https://brimmerdn.github.io/webAR/video/timelapsepainting.mp4" 
+              poster="assets/playbutton.png"></video>
+
+              <img id="arimage" width="320" height="176" src="assets/playbutton.png">
+
             </a-assets>
-            <a-marker id="arvideomarker" preset="hiro">
+
+            <!-- <a-marker id="arvideomarker"  preset="hiro"> -->
+            <a-marker id="arvideomarker" type='pattern' url="assets/pattern-frame.patt">
                 <!-- Using the asset management system. -->
                 <a-video vidhandler src="#arvideo" rotation="90 0 180" position="0 0 0" scale="1.77 1 1"></a-video>
+
+                <a-entity id="aimage" >
+                  <a-image src="#arimage" rotation="90 0 180" position="0 0 0" scale="1.77 1 1"></a-image>
+                </a-entity>
+
             </a-marker>
             <!-- use this <a-entity camera> to support multiple-markers, otherwise use <a-marker-camera> instead of </a-marker> -->
             <a-entity camera></a-entity>
+ 
+
         </a-scene>
+
     </body>
     <script>
     
@@ -56,8 +73,12 @@
 	 function touchStartHandler(event){
           if(document.querySelector('#arvideo').muted == true){
             document.querySelector('#arvideo').muted=false;
+            document.querySelector('#arvideo').play();
+            document.querySelector('#aimage').setAttribute('visible', false);
           } else if(document.querySelector('#arvideo').muted == false){
             document.querySelector('#arvideo').muted=true;
+            document.querySelector('#arvideo').pause();
+            document.querySelector('#aimage').setAttribute('visible', true);
           }
           /*if(document.querySelector('#arvideo').play == true){
             document.querySelector('#arvideo').play=false;
