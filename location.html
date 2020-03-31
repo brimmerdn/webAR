@@ -12,21 +12,7 @@
         </script>
     </head>
 
-    <script>        
-        function getLocation() {
-          if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(setPosition);
-          } else { 
-            alert("Geolocation is not supported by this browser.");
-          }
-        }
 
-        function setPosition(position){
-            document.querySelector("#gpstext").setAttribute("gps-entity-place", "latitude: " + position.coords.latitude + "; longitude: " + position.coords.longitude+";");
-            document.querySelector("#gpsbox").setAttribute("gps-entity-place", "latitude: " + position.coords.latitude + "; longitude: " + position.coords.longitude+";");
-        }
-
-    </script>
 
     <body style='margin : 0px; overflow: hidden;'>
 
@@ -44,5 +30,19 @@
 	</a-scene>
 
     </body>
-    
+    <script>        
+        function getLocation() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(setPosition);
+          } else { 
+            alert("Geolocation is not supported by this browser.");
+          }
+        }
+
+        function setPosition(position){
+            document.querySelector("#gpstext").setAttribute("gps-entity-place", "latitude: " + position.coords.latitude + "; longitude: " + position.coords.longitude+";");
+            document.querySelector("#gpsbox").setAttribute("gps-entity-place", "latitude: " + position.coords.latitude + "; longitude: " + position.coords.longitude+";");
+        }
+
+    </script>
 </html>
