@@ -1,50 +1,27 @@
-<!doctype HTML>
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset='utf-8'>
-        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>location tracking ar demo</title>
-        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-        <script src="https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.js"></script>
-        
-        <!-- add this script in order to load a large set of 3D model extensions-->
-        <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-        <script>
-            //THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/AR.js/2.2.2/three.js/'
-        </script>
-    </head>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>GeoAR.js demo</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+  </head>
 
-
-
-    <body style='margin : 0px; overflow: hidden;'>
-
-        <!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
-        <a-scene
-        vr-mode-ui="enabled: false"
-		embedded
-		arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
-
-        <a-text id="gpstext" value="This will always face the user." gps-entity-place="latitude: 37.5695556; longitude: -77.4357627;" look-at="[gps-camera]" scale="75 75 75"></a-text>
-
-        <a-box id="gpsbox" color="yellow" gps-entity-place="latitude: 37.5695556; longitude: -77.4357627;" position="100 300 0"/>
-        <a-camera gps-camera rotation-reader>
-		</a-camera>
-	</a-scene>
-
-    </body>
-    <script>        
-       /* function getLocation() {
-          if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(setPosition);
-          } else { 
-            alert("Geolocation is not supported by this browser.");
-          }
-        }
-
-        function setPosition(position){
-           // document.querySelector("#gpstext").setAttribute("gps-entity-place", "latitude: " + position.coords.latitude + "; longitude: " + position.coords.longitude+";");
-           //document.querySelector("#gpsbox").setAttribute("gps-entity-place", "latitude: " + position.coords.latitude + "; longitude: " + position.coords.longitude+";");
-        }*/
-
-    </script>
+  <body style="margin: 0; overflow: hidden;">
+    <a-scene
+      vr-mode-ui="enabled: false"
+      embedded
+      arjs="sourceType: webcam; debugUIEnabled: false;"
+    >
+      <a-text
+        value="This content will always face you."
+        look-at="[gps-camera]"
+        scale="120 120 120"
+        gps-entity-place="latitude: 37.572050; longitude: -77.428390;"
+      ></a-text>
+      <a-camera gps-camera rotation-reader> </a-camera>
+    </a-scene>
+  </body>
 </html>
