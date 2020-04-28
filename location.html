@@ -8,9 +8,9 @@
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
     <script>
       window.onload = () => {                       navigator.geolocation.getCurrentPosition((position) => {
-        document.querySelector('windmill').setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude};`)
-        document.querySelector('windmillbg').setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude};`)
-        document.querySelector('solarpanels').setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude};`)
+        document.querySelector('#windmill').setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude};`)
+        document.querySelector('#windmillbg').setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude};`)
+        document.querySelector('#solarpanels').setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude};`)
       });
      }
     </script>
@@ -25,6 +25,7 @@
     <a-assets>
       <img id="solar-panels" src="images/solarpanels.jpg">
     </a-assets>
+    
     <a-entity
       id="windmill"
       gltf-model="assets/windmill.gltf"
@@ -38,6 +39,6 @@
     <a-image id="solarpanels" src="#arimage" rotation="0 0 0" position="60 60 0" height="25" width="40"></a-image>
       <a-camera gps-camera rotation-reader> </a-camera>
     </a-scene>
-    
+
   </body>
 </html>
