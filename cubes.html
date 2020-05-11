@@ -39,13 +39,8 @@
     renderer="logarithmicDepthBuffer: true;"
     embedded
     arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+    background="color: #ECECEC"
   >
-  <a-assets>
-    <img id="solar-panels" src="images/solarpanels.jpg">
-    <video id="arvideo" width="320" height="176" controls="controls" preload muted="true" loop="true" src="video/timelapsepainting.mp4" 
-              poster="assets/playbutton.png"></video>
-    <img id="arimage" width="320" height="176" src="assets/playbutton.png">
-  </a-assets>
     <!-- a-nft is the anchor that defines an Image Tracking entity -->
     <!-- on 'url' use the path to the Image Descriptors created before. -->
     <!-- the path should end with the name without the extension e.g. if file is 'pinball.fset' the path should end with 'pinball' -->
@@ -58,13 +53,6 @@
       smoothTolerance=".01"
       smoothThreshold="5"
     >
-        
-        <a-image src="#solar-panels" position="0 60 0" height="25" width="40"></a-image>
-
-        <a-video vidhandler src="#arvideo" rotation="0 0 0" position="60 60 0" height="25" width="40"></a-video>
-        <a-entity id="aimage">
-          <a-image src="#arimage" rotation="0 0 0" position="60 60 0" height="25" width="40"></a-image>
-        </a-entity>
         <!--a-entity
         geometry="primitive: plane; width: 40; height: 15"
         material="color: #CCC"
@@ -73,25 +61,16 @@
         
         ></a-entity-->
         <!-- Basic plane. -->
-        <a-plane color="#CCC" rotation="0 0 0" position="0 15 0" height="55" width="20"></a-plane>
+        <a-plane color="#CCC" rotation="0 0 0" position="0 0 0" height="55" width="20"></a-plane>
         <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
         <a-entity
             gltf-model="assets/rotatingcubes.gltf"
-            scale="2 2 2"
-            position="0 0 20"
+            scale="10 10 10"
+            position="0 0 0"
             animation-mixer
+            material="shader: flat; color: red"
         >
         </a-entity>
-
-        <!-- Basic plane. -->
-        <a-plane color="#CCC" rotation="0 0 0" position="40 15 0" height="45" width="40"></a-plane>
-        <a-entity
-        gltf-model="assets/windmill.gltf"
-        scale="1 1 1"
-        position="40 0 10"
-        rotation="0 0 0"
-        animation-mixer>
-      </a-entity>
     </a-nft>
     <!-- static camera that moves according to the device movemenents -->
     <a-entity camera></a-entity>
