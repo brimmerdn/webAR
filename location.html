@@ -9,9 +9,7 @@
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
     <script>
       window.onload = () => {                       navigator.geolocation.getCurrentPosition((position) => {
-        document.querySelector('#windmill').setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude};`)
-        document.querySelector('#windmillbg').setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude};`)
-        document.querySelector('#solarpanels').setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude};`)
+        document.querySelector('#rotating-cubes').setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude};`)
       });
      }
     </script>
@@ -31,9 +29,9 @@
     
 
     <a-entity
+            id="rotating-cubes"
             gltf-model="assets/rotatingcubes.gltf"
             scale="0.3 0.3 0.3"
-            position="0 0 -5"
             animation-mixer
             material="shader: flat; color: red"
         >
