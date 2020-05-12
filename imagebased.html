@@ -38,7 +38,7 @@
     vr-mode-ui="enabled: false;"
     renderer="logarithmicDepthBuffer: true;"
     embedded
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"4
   >
   <a-assets>
     <img id="solar-panels" src="images/solarpanels.jpg">
@@ -52,18 +52,19 @@
     <a-nft
       id="arimagemarker"
       type="nft"
-      url="webAR/assets/sustainability/sustainability"
+      url="assets/sustainability/sustainability"
       smooth="true"
       smoothCount="10"
       smoothTolerance=".01"
       smoothThreshold="5"
     >
-        
-        <a-image src="#solar-panels" position="0 60 0" height="25" width="40"></a-image>
+        <!--Image to go bottom right-->
+        <a-image src="#solar-panels" position="70 5 -25" rotation="-90 180 -180" height="25" width="40"></a-image>
 
-        <a-video vidhandler src="#arvideo" rotation="0 0 0" position="60 60 0" height="25" width="40"></a-video>
+        <!--video to go to go top left-->
+        <a-video vidhandler src="#arvideo" rotation="-90 180 -180" position="20 5 -80" height="25" width="40"></a-video>
         <a-entity id="aimage">
-          <a-image src="#arimage" rotation="0 0 0" position="60 60 0" height="25" width="40"></a-image>
+          <a-image src="#arimage" rotation="-90 180 -180" position="20 5 -80" height="25" width="40"></a-image>
         </a-entity>
         <!--a-entity
         geometry="primitive: plane; width: 40; height: 15"
@@ -72,24 +73,27 @@
         position="40 50 0"
         
         ></a-entity-->
+
+        <!--cubes to go bottom left-->
         <!-- Basic plane. -->
-        <a-plane color="#CCC" rotation="0 0 0" position="0 15 0" height="55" width="20"></a-plane>
+        <a-plane color="#CCC" rotation="-90 90 -180" position="20 0 -25" height="30" width="30"></a-plane>
         <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
         <a-entity
             gltf-model="assets/rotatingcubes.gltf"
-            scale="10 10 10"
-            position="0 0 20"
+            scale="5 5 5"
+            position="20 5 -25"
             animation-mixer
         >
         </a-entity>
 
+        <!--windmill to go top right-->
         <!-- Basic plane. -->
-        <a-plane color="#CCC" rotation="0 0 0" position="40 15 0" height="45" width="40"></a-plane>
+        <a-plane color="#CCC" rotation="-90 90 -180" position="70 5 -80" height="40" width="50"></a-plane>
         <a-entity
         gltf-model="assets/windmill.gltf"
         scale="1 1 1"
-        position="40 0 10"
-        rotation="0 0 0"
+        position="70 5 -65"
+        rotation="180 90 -90"
         animation-mixer>
       </a-entity>
     </a-nft>
