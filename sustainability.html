@@ -35,7 +35,7 @@
   <!-- a-frame scene -->
   <a-scene
     id="arscene"
-    vr-mode-ui="enabled: false;"
+    vr-mode-ui="enabled: true;"
     renderer="logarithmicDepthBuffer: true;"
     embedded
     arjs="trackingMethod: best; sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: true;"4
@@ -49,7 +49,7 @@
       type="nft"
       url="webAR/assets/domwindmill/domwindmill"
       smooth="true"
-      smoothCount="10"
+      smoothCount="20"
       smoothTolerance=".01"
       smoothThreshold="5"
     >
@@ -65,12 +65,5 @@
     <!-- static camera that moves according to the device movemenents -->
     <a-entity camera></a-entity>
   </a-scene>
-  <script>
-    // Workaround for an AR.js bug (https://github.com/jeromeetienne/AR.js/issues/410)
-    const sceneEl = document.querySelector('a-scene');
-    sceneEl.addEventListener('loaded', () => {
-        sceneEl.camera = new THREE.PerspectiveCamera();
-    });
-    </script>
 </body>
 </html>
