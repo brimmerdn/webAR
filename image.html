@@ -156,4 +156,55 @@
     <a-entity camera></a-entity>
   </a-scene>
 </body>
+<script>
+    
+  var userDevice = getMobileOperatingSystem();
+ 
+  arscene = document.querySelector('#arscene'); 
+    
+  arscene.addEventListener('touchstart', touchStartHandler, false);
+    
+function touchStartHandler(event){
+      if(document.querySelector('#arvideo').muted == true){
+        document.querySelector('#arvideo').muted=false;
+        document.querySelector('#arvideo').play();
+        document.querySelector('#aimage').setAttribute('visible', false);
+      } else if(document.querySelector('#arvideo').muted == false){
+        document.querySelector('#arvideo').muted=true;
+        document.querySelector('#arvideo').pause();
+        document.querySelector('#aimage').setAttribute('visible', true);
+      }
+      /*if(document.querySelector('#arvideo').play == true){
+        document.querySelector('#arvideo').play=false;
+      } else if(document.querySelector('#arvideo').play == false){
+        document.querySelector('#arvideo').play=true;
+      }*/
+    }
+  
+      
+  function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+
+ function getMobileOperatingSystem() {
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    // Windows Phone must come first because its UA also contains "Android"
+    if (/windows phone/i.test(userAgent)) {
+      return "Windows Phone";
+    }
+    if (/android/i.test(userAgent)) {
+      return "Android";
+    }
+    // iOS detection from: http://stackoverflow.com/a/9039885/177710
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      return "iOS";
+    }
+    return "unknown";
+  }
+
+</script>
 </html>
