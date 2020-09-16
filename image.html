@@ -25,7 +25,27 @@
     color: white;
   }
 </style>
-
+<script>
+  AFRAME.registerComponent('vidhandler', {
+ init: function () {
+   this.toggle = false;
+   document.querySelector("#arvideo").pause(); //reference to the video
+ },
+ tick:function(){  
+   if(document.querySelector("#arvideomarker").object3D.visible == true){
+     if(!this.toggle){
+       this.toggle = true;
+       //document.querySelector("#arvideo").play();
+  //document.querySelector("#arvideo").muted=false;
+     }
+   }else{
+     this.toggle = false;
+     //document.querySelector("#arvideo").pause();
+//document.querySelector("#arvideo").muted=true;
+   }
+ }
+ });	    
+</script>
 <body style="margin : 0px; overflow: hidden;">
   <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
   <div class="arjs-loader">
@@ -59,14 +79,7 @@
       smoothThreshold="5"
     >
 
-        <!-- Basic plane. -->
-        <a-plane color="#CCC" rotation="-90 90 -180" position="50 5 -70" height="45" width="45"></a-plane>
-        <a-entity
-        gltf-model="assets/windmill.gltf"
-        scale="1 1 1"
-        position="50 5 -50"
-        rotation="180 90 -90"
-        animation-mixer>
+    <a-video vidhandler src="#arvideo" rotation="-90 180 -180" position="20 5 0"></a-video>
       </a-entity>
     </a-nft>
 
@@ -80,13 +93,13 @@
       smoothThreshold="5"
     >
         <!--Image to go bottom right-->
-        <!--a-image src="#solar-panels" position="70 5 -25" rotation="-90 180 -180" height="25" width="40"></a-image-->
+        <a-image src="#solar-panels" position="70 5 -25" rotation="-90 180 -180" height="25" width="40"></a-image>
 
         <!--video to go to go top left-->
-        <a-video vidhandler src="#arvideo" rotation="-90 180 -180" position="20 5 0"></a-video>
-        <!--a-entity id="aimage">
+        <a-video vidhandler src="#arvideo" rotation="-90 180 -180" position="20 5 -80" height="25" width="40"></a-video>
+        <a-entity id="aimage">
           <a-image src="#arimage" rotation="-90 180 -180" position="20 5 -80" height="25" width="40"></a-image>
-        </a-entity-->
+        </a-entity>
         <!--a-entity
         geometry="primitive: plane; width: 40; height: 15"
         material="color: #CCC"
@@ -99,25 +112,46 @@
         <!-- Basic plane. -->
         <!--a-plane color="#CCC" rotation="-90 90 -180" position="20 0 -25" height="30" width="30"></a-plane-->
         <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
-        <!--a-entity
+        <a-entity
             gltf-model="assets/rotatingcubes.gltf"
             scale="5 5 5"
             position="20 5 -25"
             animation-mixer
         >
-        </a-entity-->
+        </a-entity>
 
         
         <!--windmill to go top right-->
         <!-- Basic plane. -->
-        <!--a-plane color="#CCC" rotation="-90 90 -180" position="70 5 -80" height="40" width="50"></a-plane>
+        <a-plane color="#CCC" rotation="-90 90 -180" position="70 5 -80" height="40" width="50"></a-plane>
         <a-entity
         gltf-model="assets/windmill.gltf"
         scale="1 1 1"
         position="70 5 -65"
         rotation="180 90 -90"
         animation-mixer>
-      </a-entity-->
+      </a-entity>
+    </a-nft>
+
+    <a-nft
+      id="arimagemarkerd"
+      type="nft"
+      url="webAR/assets/domwindmill/domwindmill"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5"
+    >
+
+        <!-- Basic plane. -->
+        <a-plane color="#CCC" rotation="-90 90 -180" position="50 5 -70" height="45" width="45"></a-plane>
+        <a-entity
+        gltf-model="assets/windmill.gltf"
+        scale="1 1 1"
+        position="50 5 -50"
+        rotation="180 90 -90"
+        animation-mixer>
+      </a-entity>
     </a-nft>
     <!-- static camera that moves according to the device movemenents -->
     <a-entity camera></a-entity>
