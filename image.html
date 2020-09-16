@@ -38,9 +38,14 @@
     vr-mode-ui="enabled: false;"
     renderer="logarithmicDepthBuffer: true;"
     embedded
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"4
+    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
   >
-
+  <a-assets>
+    <img id="solar-panels" src="images/solarpanels.jpg">
+    <video id="arvideo" width="320" height="176" controls="controls" preload muted="true" loop="true" src="video/timelapsepainting.mp4" 
+              poster="assets/playbutton.png"></video>
+    <img id="arimage" width="320" height="176" src="assets/playbutton.png">
+  </a-assets>
     <!-- a-nft is the anchor that defines an Image Tracking entity -->
     <!-- on 'url' use the path to the Image Descriptors created before. -->
     <!-- the path should end with the name without the extension e.g. if file is 'pinball.fset' the path should end with 'pinball' -->
@@ -60,6 +65,56 @@
         gltf-model="assets/windmill.gltf"
         scale="1 1 1"
         position="50 5 -50"
+        rotation="180 90 -90"
+        animation-mixer>
+      </a-entity>
+    </a-nft>
+
+    <a-nft
+      id="arimagemarker"
+      type="nft"
+      url="webAR/assets/windmill/windmill"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5"
+    >
+        <!--Image to go bottom right-->
+        <a-image src="#solar-panels" position="70 5 -25" rotation="-90 180 -180" height="25" width="40"></a-image>
+
+        <!--video to go to go top left-->
+        <a-video vidhandler src="#arvideo" rotation="-90 180 -180" position="20 5 -80" height="25" width="40"></a-video>
+        <a-entity id="aimage">
+          <a-image src="#arimage" rotation="-90 180 -180" position="20 5 -80" height="25" width="40"></a-image>
+        </a-entity>
+        <!--a-entity
+        geometry="primitive: plane; width: 40; height: 15"
+        material="color: #CCC"
+        text="color:#000; value: This text will be 40 units wide."
+        position="40 50 0"
+        
+        ></a-entity-->
+          <!-- here's another comment-->
+        <!--cubes to go bottom left-->
+        <!-- Basic plane. -->
+        <!--a-plane color="#CCC" rotation="-90 90 -180" position="20 0 -25" height="30" width="30"></a-plane-->
+        <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
+        <a-entity
+            gltf-model="assets/rotatingcubes.gltf"
+            scale="5 5 5"
+            position="20 5 -25"
+            animation-mixer
+        >
+        </a-entity>
+
+        
+        <!--windmill to go top right-->
+        <!-- Basic plane. -->
+        <a-plane color="#CCC" rotation="-90 90 -180" position="70 5 -80" height="40" width="50"></a-plane>
+        <a-entity
+        gltf-model="assets/windmill.gltf"
+        scale="1 1 1"
+        position="70 5 -65"
         rotation="180 90 -90"
         animation-mixer>
       </a-entity>
