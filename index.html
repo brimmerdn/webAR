@@ -32,13 +32,18 @@
     
 
     <body style='margin : 0px; overflow: hidden;'>
-
+      
+        <!--video controls width="250">
+          <source src="video/2020SustainabilityReport.mp4" type="video/mp4">
+          Sorry, your browser doesn't support embedded videos.
+        </video-->
+      
         <!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
         <a-scene id="arscene" embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
             
 
             <a-assets>
-              <video id="arvideo" width="320" height="176" controls="controls" preload muted="true" loop="true" src="https://brimmerdn.github.io/webAR/video/timelapsepainting.mp4" 
+              <video id="arvideo" width="320" height="176" controls="controls" preload muted="true" loop="true" src="video/2020SustainabilityReport.mp4" 
               poster="assets/playbutton.png"></video>
 
               <img id="arimage" width="320" height="176" src="assets/playbutton.png">
@@ -46,19 +51,29 @@
             </a-assets>
 
             <!-- <a-marker id="arvideomarker"  preset="hiro"> -->
-            <a-marker id="arvideomarker" type='pattern' url="assets/hiro.patt">
+            <!--a-marker id="arvideomarker" type='pattern' url="assets/patter-frame.patt"-->
                 <!-- Using the asset management system. -->
-                <a-video vidhandler src="#arvideo" rotation="-90 0 0" position="0 0 0" scale="1.77 1 1"></a-video>
-
-                <a-entity id="aimage" >
+                <!--a-video vidhandler src="#arvideo" rotation="-90 0 0" position="0 0 0" scale="1.77 1 1"></a-video-->
+                <!--a-video vidhandler src="#arvideo" rotation="-90 0 0" scale="1.77 1 1"></a-video>
+                <a-entity id="aimage">
                   <a-image src="#arimage" rotation="-90 0 0" position="0 0 0" scale="1.77 1 1"></a-image>
                 </a-entity>
+            </a-marker-->
 
-            </a-marker>
+
+            <a-marker id="arlinkmarker" type='pattern' url="assets/hiro.patt">
+              <!-- Using the asset management system. -->
+              <!--a-video vidhandler src="#arvideo" rotation="-90 0 0" position="0 0 0" scale="1.77 1 1"></a-video-->
+              <!--a-video vidhandler src="#arvideo" rotation="-90 0 0" scale="1.77 1 1"></a-video-->
+              <a-entity id="alink" link="on: click; href: https://aframe-aincraft.glitch.me">
+                <a-image src="#arimage" rotation="-90 0 0" position="0 0 0" scale="1.77 1 1"></a-image>
+              </a-entity>
+          </a-marker>
             <!-- use this <a-entity camera> to support multiple-markers, otherwise use <a-marker-camera> instead of </a-marker> -->
+               
             <a-entity camera></a-entity>
  
-
+            
         </a-scene>
 
     </body>
@@ -74,11 +89,11 @@
           if(document.querySelector('#arvideo').muted == true){
             document.querySelector('#arvideo').muted=false;
             document.querySelector('#arvideo').play();
-            document.querySelector('#aimage').setAttribute('visible', false);
+            //document.querySelector('#aimage').setAttribute('visible', false);
           } else if(document.querySelector('#arvideo').muted == false){
             document.querySelector('#arvideo').muted=true;
             document.querySelector('#arvideo').pause();
-            document.querySelector('#aimage').setAttribute('visible', true);
+            //document.querySelector('#aimage').setAttribute('visible', true);
           }
           /*if(document.querySelector('#arvideo').play == true){
             document.querySelector('#arvideo').play=false;
