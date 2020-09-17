@@ -12,6 +12,7 @@
         // 2. This code loads the IFrame Player API code asynchronously.
         var tag = document.createElement('script');
     
+        var ytVidId = 'CKTDZiefun0';
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
@@ -21,9 +22,9 @@
         var player;
         function onYouTubeIframeAPIReady() {
           player = new YT.Player('player', {
-            height: $(document).width() * 0.80 * 0.75,
-            width: $(document).width() * 0.80,
-            videoId: 'CKTDZiefun0',
+            height: $(document).width() * 0.60 * 0.75,
+            width: $(document).width() * 0.60,
+            videoId: ytVidId,
             events: {
               'onReady': onPlayerReady,
               'onStateChange': onPlayerStateChange
@@ -41,18 +42,11 @@
         //    the player should play for six seconds and then stop.
         var done = false;
         function onPlayerStateChange(event) {
-          
         }
         function stopVideo() {
           player.stopVideo();
         }
-      </script>
-
-      <!--<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>-->
-  <!-- we import arjs version without NFT but with marker + location based support -->
-  <!--<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>-->
-  <script>
-
+      
 
     function closeDialog() {
       if (reload) {
@@ -71,10 +65,9 @@
 
       //Make all barrels (except el)  invisible
       //Make all barrels and all text visible again
-      text.forEach((el) => el.setAttribute('visible', false));
 
-      const barrels = document.querySelectorAll('.box');
-      barrels.forEach((barrelEl) => barrelEl.setAttribute('visible', barrelEl.id === el.id));
+      const boxes = document.querySelectorAll('.box');
+      boxes.forEach((boxesEl) => boxesEl.setAttribute('visible', boxesEl.id === el.id));
 
       restoreX = el.getAttribute('position').x;
       restoreY = el.getAttribute('position').y;
@@ -87,10 +80,8 @@
 
       setTimeout(() => {
           //Make all barrels and all text visible again
-          text.forEach((el) => el.setAttribute('visible', true));
-
-          const barrels = document.querySelectorAll('.box');
-          barrels.forEach((el) => el.setAttribute('visible', true));
+          const boxes = document.querySelectorAll('.box');
+          boxes.forEach((el) => el.setAttribute('visible', true));
 
       }, 3000);
       
@@ -108,6 +99,7 @@
           //On click on the Chateau Points barrel, go to scan the dot code page
             const gltf_box1 = document.querySelector('#box1');
             const gltf_box2 = document.querySelector('#box2');
+            const cam = document.querySelector('#camera');
             var x = cam.getAttribute('position').x;
             var y = cam.getAttribute('position').y;
             var z = cam.getAttribute('position').z;
@@ -116,21 +108,26 @@
 
            
             gltf_box1.addEventListener('click', function(ev, target) {
-              goInside(gltf_brand);
+                ytVidId = gltf_box1.getAttribute("ytid");
+                
+            player.loadVideoById(ytVidId,0)
+              goInside(gltf_box1);
               $( "#videoDialog" ).dialog( "open" );
               player.playVideo();
             })
 
             gltf_box2.addEventListener('click', function(ev, target) {
-              goInside(gltf_brand);
+                ytVidId = gltf_box2.getAttribute("ytid");
+                
+            player.loadVideoById(ytVidId,0)
+              goInside(gltf_box2);
               $( "#videoDialog" ).dialog( "open" );
               player.playVideo();
             })
 
         }
     });
-</script>
-    <script>
+
     AFRAME.registerComponent('change-color-on-click', {
         // Could use a schem to preserve the color! then simply change it on update
         // if clicked?
@@ -173,7 +170,7 @@
         } );
       </script>
     <body style='margin : 0px; overflow: hidden;'>
-          <div id="videoDialog" title="Dominion Energy" style="z-index: 100">
+          <div show="hidden" id="videoDialog" title="Dominion Energy" style="z-index: 100">
             <div id="player"></div>
           </div>
         <!--video controls width="250">
@@ -190,19 +187,28 @@
                 raycaster="far: 20; interval: 1000; objects: .clickable">
                 </a-entity>
             </a-entity>
-            <a-marker id="arlinkmarker1" type='pattern' url="assets/hiro.patt" button>
+            <a-marker id="arlinkmarker1" type='pattern' url="assets/hiro.patt">
                 <!-- Target -->
-                <a-box id="box1" class="clickable box" change-color-on-click material="color: green" depth="0.5" height="0.5" width="0.5"></a-box>
+                <a-box id="box1" class="clickable box" change-color-on-click button material="color: green" depth="0.5" height="0.5" width="0.5" ytid="x-ArvMGD_Gs"></a-box>
             </a-marker>
-            <a-marker id="arlinkmarker2" type='pattern' url="assets/pattern-frame.patt" button>
+            <a-marker id="arlinkmarker2" type='pattern' url="assets/pattern-frame.patt">
                 <!-- Target -->
-                <a-box id="box2" class="clickable box" change-color-on-click material="color: green" change-color-on-click depth="0.5" height="0.5" width="0.5"></a-box>
+                <!--a-box id="box2" class="clickable box" change-color-on-click button material="color: green" change-color-on-click depth="0.5" height="0.5" width="0.5"></a-box-->
+                <a-entity
+                id="box2" class="clickable box" 
+                gltf-model="assets/sustainabilitywindmill.gltf"
+                scale=".5 .5 .5"
+                animation-mixer
+                change-color-on-click
+                ytid="CKTDZiefun0"
+                button>
+                </a-entity>
             </a-marker>
             
         </a-scene>
     </body>
     <script>
-       /* var arscene = document.querySelector('#arscene'); 
+       var arscene = document.querySelector('#arscene'); 
         var lastIndex=0;
         var COLORS = [
                     'pink',
@@ -220,7 +226,11 @@
             lastIndex = (lastIndex + 1) % COLORS.length;
             targetEl.setAttribute('material', 'color', COLORS[lastIndex]);
                 console.log('I was clicked at: ', evt.detail.intersection.point);
-        }*/
+
+            goInside(gltf_box1);
+              $( "#videoDialog" ).dialog( "open" );
+              player.playVideo();
+        }
         
         /*el.setAttribute("material", {color: 'blue'});
             if(flag){
