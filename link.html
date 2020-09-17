@@ -108,7 +108,7 @@
 
            
             gltf_box1.addEventListener('click', function(ev, target) {
-                ytVidId = gltf_box1.getAttribute("ytid");
+            ytVidId = gltf_box1.getAttribute("ytid");
                 
             player.loadVideoById(ytVidId,0)
               goInside(gltf_box1);
@@ -117,9 +117,9 @@
             })
 
             gltf_box2.addEventListener('click', function(ev, target) {
-                ytVidId = gltf_box2.getAttribute("ytid");
+            ytVidId = gltf_box2.getAttribute("ytid");
                 
-            player.loadVideoById(ytVidId,0)
+            player.loadVideoById(ytVidId,0);
               goInside(gltf_box2);
               $( "#videoDialog" ).dialog( "open" );
               player.playVideo();
@@ -142,6 +142,8 @@
             '#2EAFAC',
             '#BAE'];
             this.el.addEventListener('click', changeColor);
+            ytVidId = this.el.getAttribute("ytid");
+                
             //this.el.addEventListener('touch', changeColor);
             function changeColor(evt) {
                 lastIndex = (lastIndex + 1) % COLORS.length;
@@ -182,10 +184,10 @@
         <a-scene id="arscene" embedded arjs='trackingMethod: best; sourceType: webcam;debugUIEnabled: true; detectionMode: mono_and_matrix; matrixCodeType: 3x3_HAMMING63;'>    
             <!-- Camera + Cursor -->
             <a-entity id="camera" camera>
-                <a-entity
+                <a-cursor
                 cursor
                 raycaster="far: 20; interval: 1000; objects: .clickable">
-                </a-entity>
+                </a-cursor>
             </a-entity>
             <a-marker id="arlinkmarker1" type='pattern' url="assets/hiro.patt">
                 <!-- Target -->
@@ -208,7 +210,7 @@
         </a-scene>
     </body>
     <script>
-       var arscene = document.querySelector('#arscene'); 
+       /*var arscene = document.querySelector('#arscene'); 
         var lastIndex=0;
         var COLORS = [
                     'pink',
@@ -226,11 +228,11 @@
             lastIndex = (lastIndex + 1) % COLORS.length;
             targetEl.setAttribute('material', 'color', COLORS[lastIndex]);
                 console.log('I was clicked at: ', evt.detail.intersection.point);
-
+            
             goInside(gltf_box1);
               $( "#videoDialog" ).dialog( "open" );
               player.playVideo();
-        }
+        }*/
         
         /*el.setAttribute("material", {color: 'blue'});
             if(flag){
