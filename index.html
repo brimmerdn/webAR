@@ -22,8 +22,8 @@
         var player;
         function onYouTubeIframeAPIReady() {
           player = new YT.Player('player', {
-            height: $(document).width() * 0.60 * 0.75,
-            width: $(document).width() * 0.60,
+            height: $(document).width() * 0.80 * 0.75,
+            width: $(document).width() * 0.80,
             videoId: ytVidId,
             events: {
               'onReady': onPlayerReady,
@@ -174,7 +174,11 @@
         </video-->
       
         <!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
-        <a-scene id="arscene" embedded arjs='trackingMethod: best; sourceType: webcam;debugUIEnabled: true; detectionMode: mono_and_matrix; matrixCodeType: 3x3_HAMMING63;'>    
+        <a-scene id="arscene" embedded arjs='debugUIEnabled: true; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>    
+          <a-assets>
+            <img id="arthumb" src="images/thumbnail.png">
+            <img id="arimage" width="320" height="176" src="assets/playbutton.png">
+          </a-assets>
             <!-- Camera + Cursor -->
             <a-entity id="camera" camera>
                 <a-cursor
@@ -182,10 +186,15 @@
                 raycaster="far: 20; interval: 1000; objects: .clickable">
                 </a-cursor>
             </a-entity>
-            <a-marker id="arlinkmarker2" type='pattern' url="assets/pattern-frame.patt">
+            <!--a-marker id="arlinkmarker2" type='pattern' url="assets/pattern-frame.patt"-->
+            <a-marker id="arlinkmarker2" type='barcode' value='5'>  
                 <!-- Target -->
                 <!--a-box id="box2" class="clickable box" change-color-on-click button material="color: green" change-color-on-click depth="0.5" height="0.5" width="0.5"></a-box-->
-                <a-entity
+                
+                  <a-plane src="#arthumb" rotation="-90 0 0" position="0 0 0" scale="1.77 1.1 1"></a-plane>
+                  <a-image id="box2" class="clickable box" button src="#arimage" rotation="-90 0 0" position="0 0 0" scale="1.77 1.1 1"></a-image>
+                
+                <!--a-entity
                 id="box2" class="clickable box" 
                 gltf-model="assets/sustainabilitywindmill.gltf"
                 scale=".5 .5 .5"
@@ -193,7 +202,7 @@
                 change-color-on-click
                 ytid="2ZSE9TxQ-3Q"
                 button>
-                </a-entity>
+                </a-entity-->
             </a-marker>
             
         </a-scene>
