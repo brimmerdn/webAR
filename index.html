@@ -65,7 +65,7 @@
 
       //Make all barrels (except el)  invisible
       //Make all barrels and all text visible again
-
+      //var ytVidId = el.getAttribute("ytid");
       const boxes = document.querySelectorAll('.box');
       boxes.forEach((boxesEl) => boxesEl.setAttribute('visible', boxesEl.id === el.id));
 
@@ -97,7 +97,7 @@
         init: function() {
 
           //On click on the Chateau Points barrel, go to scan the dot code page
-            //const gltf_box1 = document.querySelector('#box1');
+            const gltf_box1 = document.querySelector('#box1');
             const gltf_box2 = document.querySelector('#box2');
             const cam = document.querySelector('#camera');
             var x = cam.getAttribute('position').x;
@@ -107,15 +107,20 @@
             var pos = x.toString() + ' ' + (y).toString() + ' ' + (z-150).toString()
 
            
-            /*gltf_box1.addEventListener('click', function(ev, target) {
+            gltf_box1.addEventListener('click', function(ev, target) {
               goInside(gltf_box1);
+              ytVidId=gltf_box1.getAttribute("ytid");
               $( "#videoDialog" ).dialog( "open" );
+              player.loadVideoById(ytVidId,0,"small");
               player.playVideo();
-            })*/
+              
+            })
 
             gltf_box2.addEventListener('click', function(ev, target) {
               goInside(gltf_box2);
+              ytVidId=gltf_box2.getAttribute("ytid");
               $( "#videoDialog" ).dialog( "open" );
+              player.loadVideoById(ytVidId,0,"small");
               player.playVideo();
             })
 
@@ -176,8 +181,7 @@
         <!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
         <a-scene id="arscene" embedded arjs='debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>    
           <a-assets>
-            <img id="arthumb" src="images/thumbnail.png">
-            <img id="arimage" width="320" height="176" src="assets/playbutton.png">
+            <img id="arthumb" src="images/ThomasFarrell.png">
           </a-assets>
             <!-- Camera + Cursor -->
             <a-entity id="camera" camera>
@@ -186,23 +190,21 @@
                 raycaster="far: 20; interval: 1000; objects: .clickable">
                 </a-cursor>
             </a-entity>
-            <!--a-marker id="arlinkmarker2" type='pattern' url="assets/pattern-frame.patt"-->
-            <a-marker id="arlinkmarker2" type='barcode' value='5'>  
+            <a-marker id="arlinkmarker2" type='pattern' url="assets/pattern-frame.patt">
+            <!--a-marker id="arlinkmarker2" type='barcode' value='5'-->  
                 <!-- Target -->
                 <!--a-box id="box2" class="clickable box" change-color-on-click button material="color: green" change-color-on-click depth="0.5" height="0.5" width="0.5"></a-box-->
-                
-                  <a-plane src="#arthumb" rotation="-90 0 0" position="0 0 0" scale="1.77 1.1 1"></a-plane>
-                  <a-image id="box2" class="clickable box" button src="#arimage" rotation="-90 0 0" position="0 0 0" scale="1.77 1.1 1"></a-image>
-                
-                <!--a-entity
+                <a-image id="box1" class="clickable box" button ytid="eSqUlQJ-vi8" src="#arthumb" position="-0.5 0 0" rotation="-90 0 0" scale=".5 .5 .5"></a-image>
+                <a-entity
                 id="box2" class="clickable box" 
                 gltf-model="assets/sustainabilitywindmill.gltf"
-                scale=".5 .5 .5"
+                scale=".2 .2 .2"
                 animation-mixer
+                position=".5 0 0"
                 change-color-on-click
                 ytid="2ZSE9TxQ-3Q"
                 button>
-                </a-entity-->
+                </a-entity>
             </a-marker>
             
         </a-scene>
