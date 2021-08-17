@@ -73,7 +73,7 @@
       //var ytVidId = el.getAttribute("ytid");
       const boxes = document.querySelectorAll('.box');
       //boxes.forEach((boxesEl) => boxesEl.setAttribute('visible', boxesEl.id === el.id));
-      boxes.forEach((boxesEl) => boxesEl.setAttribute('visible', false));
+      //boxes.forEach((boxesEl) => boxesEl.setAttribute('visible', false));
 
       restoreX = el.getAttribute('position').x;
       restoreY = el.getAttribute('position').y;
@@ -103,7 +103,7 @@
         init: function() {
 
           //On click on the Chateau Points barrel, go to scan the dot code page
-            const gltf_box1 = document.querySelector('#box1');
+            /*const gltf_box1 = document.querySelector('#box1');
             const cam = document.querySelector('#camera');
             var x = cam.getAttribute('position').x;
             var y = cam.getAttribute('position').y;
@@ -119,7 +119,7 @@
               player.loadVideoById(ytVidId,0,"small");
               player.playVideo();
               
-            })
+            })*/
 
         }
     });
@@ -178,16 +178,17 @@
           </a-assets>
             <!-- Camera + Cursor -->
             <a-entity id="camera" camera>
-                <a-cursor
+                <!--a-cursor
                 cursor
                 raycaster="far: 20; interval: 1000; objects: .clickable">
-                </a-cursor>
+                </a-cursor-->
             </a-entity>
             <a-marker id="arlinkmarker2" type='pattern' url="assets/pattern-anniversary.patt">
             <!--a-marker id="arlinkmarker2" type='barcode' value='5'-->  
                 <!-- Target -->
-                <a-text class="box" value="Tap to see more love!" position="-50 -50 0" rotation="-65 0 0" scale=".3 .3 .3"></a-text>
-                <a-image id="box1" class="clickable box" button ytid="OEzRX-mM8ts" src="#arthumb" position="0 0 0" rotation="-65 0 0" scale="1 1 1"></a-image>
+                <!--a-text class="box" value="Tap to see more love!" position="-50 -50 0" rotation="-65 0 0" scale=".3 .3 .3"></a-text-->
+                <!--a-image id="box1" class="clickable box" button ytid="OEzRX-mM8ts" src="#arthumb" position="0 0 0" rotation="-65 0 0" scale="1 1 1"></a-image-->
+                <a-image id="box1" button src="#arthumb" position="0 0 0" rotation="-65 0 0" scale="1 1 1"></a-image>
             </a-marker>
             
         </a-scene>
