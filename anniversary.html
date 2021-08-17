@@ -13,7 +13,7 @@
         var tag = document.createElement('script');
         //qycioRpvUoA
         //2ZSE9TxQ-3Q
-        var ytVidId = '2ZSE9TxQ-3Q';
+        var ytVidId = 'OEzRX-mM8ts';
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
@@ -104,7 +104,6 @@
 
           //On click on the Chateau Points barrel, go to scan the dot code page
             const gltf_box1 = document.querySelector('#box1');
-            const gltf_box2 = document.querySelector('#box2');
             const cam = document.querySelector('#camera');
             var x = cam.getAttribute('position').x;
             var y = cam.getAttribute('position').y;
@@ -120,14 +119,6 @@
               player.loadVideoById(ytVidId,0,"small");
               player.playVideo();
               
-            })
-
-            gltf_box2.addEventListener('click', function(ev, target) {
-              goInside(gltf_box2);
-              ytVidId=gltf_box2.getAttribute("ytid");
-              $( "#videoDialog" ).dialog( "open" );
-              player.loadVideoById(ytVidId,0,"small");
-              player.playVideo();
             })
 
         }
@@ -176,18 +167,14 @@
         } );
       </script>
     <body style='margin : 0px; overflow: hidden;'>
-          <div show="hidden" id="videoDialog" title="Dominion Energy" style="z-index: 100">
+          <div show="hidden" id="videoDialog" title="JeanAndDavid" style="z-index: 100">
             <div id="player"></div>
           </div>
-        <!--video controls width="250">
-          <source src="video/2020SustainabilityReport.mp4" type="video/mp4">
-          Sorry, your browser doesn't support embedded videos.
-        </video-->
       
         <!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
         <a-scene id="arscene" embedded arjs='debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>    
           <a-assets>
-            <img id="arthumb" src="images/BobBlue.jpg">
+            <img id="arthumb" src="images/weddingbeach.jpg">
           </a-assets>
             <!-- Camera + Cursor -->
             <a-entity id="camera" camera>
@@ -196,23 +183,11 @@
                 raycaster="far: 20; interval: 1000; objects: .clickable">
                 </a-cursor>
             </a-entity>
-            <a-marker id="arlinkmarker2" type='pattern' url="assets/pattern-frame.patt">
+            <a-marker id="arlinkmarker2" type='pattern' url="assets/pattern-anniversary.patt">
             <!--a-marker id="arlinkmarker2" type='barcode' value='5'-->  
                 <!-- Target -->
-                <!--a-box id="box2" class="clickable box" change-color-on-click button material="color: green" change-color-on-click depth="0.5" height="0.5" width="0.5"></a-box-->
-                <a-text class="box" value="Look closer for a word from Bob Blue" position="-1.2 .5 0" rotation="-65 0 0" scale=".3 .3 .3"></a-text>
-                <a-image id="box1" class="clickable box" button ytid="qycioRpvUoA" src="#arthumb" position="-0.75 0 0" rotation="-65 0 0" scale="1 1 1"></a-image>
-                <a-text class="box" value="Look closer for a video on Sustainability" position="0.3 .5 0" scale=".3 .3 .3"></a-text>
-                <a-entity
-                id="box2" class="clickable box" 
-                gltf-model="assets/sustainabilitywindmill.gltf"
-                scale=".2 .2 .2"
-                animation-mixer
-                position=".75 0 0"
-                change-color-on-click
-                ytid="2ZSE9TxQ-3Q"
-                button>
-                </a-entity>
+                <a-text class="box" value="Tap to see more love!" position="0 0 0" rotation="-65 0 0" scale=".3 .3 .3"></a-text>
+                <a-image id="box1" class="clickable box" button ytid="OEzRX-mM8ts" src="#arthumb" position="0 0 0" rotation="-65 0 0" scale="1 1 1"></a-image>
             </a-marker>
             
         </a-scene>
