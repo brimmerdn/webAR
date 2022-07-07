@@ -15,7 +15,6 @@
         //2ZSE9TxQ-3Q
         
         // var ytVidId = '2ZSE9TxQ-3Q';
-        var ytVidId = 'liJVSwOiiwg'; //TODO delete later
 
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -54,20 +53,14 @@
       //Delete later: change line 203 to adjust Bob Blue picture
 
     function closeDialog() {
-      if (reload) {
-        window.location.reload();
-      } else {
-        stopVideo();
-        goOutside();
-      }
+      stopVideo();
+      goOutside();
       const boxes = document.querySelectorAll('.box');
           boxes.forEach((el) => el.setAttribute('visible', true));
-      
     }
 
     var restoreX, restoreY, restoreZ;
     var restoreEl;
-    var reload = false;
 
     function goInside(el) {
 
@@ -94,10 +87,10 @@
 
       }, 3000);
       
-      //Restore the position of the selected barrel
-      if (restoreEl) {
-        const restorePos = restoreX.toString() + ' ' + restoreY.toString() + ' ' + restoreZ.toString()
-      }
+      // //Restore the position of the selected barrel
+      // if (restoreEl) {
+      //   const restorePos = restoreX.toString() + ' ' + restoreY.toString() + ' ' + restoreZ.toString()
+      // }
       restoreEl = null;
 
     }
@@ -136,29 +129,29 @@
         }
     });
 
-    AFRAME.registerComponent('change-color-on-click', {
-        // Could use a schem to preserve the color! then simply change it on update
-        // if clicked?
-        init: function () {
-            var lastIndex = -1;
-            var COLORS = [
-            'pink',
-            'blue',
-            'yellow',
-            'red',
-            'peachpuff',
-            '#2EAFAC',
-            '#BAE'];
-            this.el.addEventListener('click', changeColor);
+    // AFRAME.registerComponent('change-color-on-click', {
+    //     // Could use a schem to preserve the color! then simply change it on update
+    //     // if clicked?
+    //     init: function () {
+    //         var lastIndex = -1;
+    //         var COLORS = [
+    //         'pink',
+    //         'blue',
+    //         'yellow',
+    //         'red',
+    //         'peachpuff',
+    //         '#2EAFAC',
+    //         '#BAE'];
+    //         this.el.addEventListener('click', changeColor);
                 
-            //this.el.addEventListener('touch', changeColor);
-            function changeColor(evt) {
-                lastIndex = (lastIndex + 1) % COLORS.length;
-                this.setAttribute('material', 'color', COLORS[lastIndex]);
-                console.log('I was clicked at: ', evt.detail.intersection.point);
-            }
-        }
-    });
+    //         //this.el.addEventListener('touch', changeColor);
+    //         function changeColor(evt) {
+    //             lastIndex = (lastIndex + 1) % COLORS.length;
+    //             this.setAttribute('material', 'color', COLORS[lastIndex]);
+    //             console.log('I was clicked at: ', evt.detail.intersection.point);
+    //         }
+    //     }
+    // });
     </script>
     <script>
         $( function() {
@@ -203,15 +196,15 @@
             <!--a-marker id="arlinkmarker2" type='barcode' value='5'-->  
                 <!-- Target -->
                 <!--a-box id="box2" class="clickable box" change-color-on-click button material="color: green" change-color-on-click depth="0.5" height="0.5" width="0.5"></a-box-->
-                <a-text class="box" value="Look closer for a word from Bob Blue" position="-1.2 .5 0" rotation="90 45 0" scale=".9 .9 .9"></a-text> <!---65 0 0 , .3 .3 .3--> 
-                <a-image id="box1" class="clickable box" button ytid="qycioRpvUoA" src="#arthumb" position="-0.75 0 0" rotation="90 0 0" scale=".5 .5 .5"></a-image> <!---1 1 1 scale-->
+                <a-text class="box" value="Look closer for a word from Bob Blue" position="-1.2 .5 0" rotation="-65 0 0" scale=".3 .3 .3"></a-text> 
+                <a-image id="box1" class="clickable box" button ytid="qycioRpvUoA" src="#arthumb" position="-0.75 0 0" rotation="90 0 0" scale="1 1 1"></a-image> 
                 <a-text class="box" value="Look closer for a video on Sustainability" position="0.3 .5 0" scale=".3 .3 .3"></a-text>
                 <a-entity
                 id="box2" class="clickable box" 
                 gltf-model="assets/sustainabilitywindmill.gltf"
                 scale=".2 .2 .2"
                 animation-mixer
-                position=".75 0 0"
+                position="-1 0 0"
                 change-color-on-click
                 ytid="2ZSE9TxQ-3Q"
                 button>
