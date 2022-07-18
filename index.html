@@ -3,7 +3,7 @@
     <head>
         <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     </head>
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -195,15 +195,15 @@
             <!--a-marker id="arlinkmarker2" type='barcode' value='5'-->  
                 <!-- Target -->
                 <!--a-box id="box2" class="clickable box" change-color-on-click button material="color: green" change-color-on-click depth="0.5" height="0.5" width="0.5"></a-box-->
-                <a-text class="box" value="Look closer for a word from Bob Blue" position="-1.2 .5 0" rotation="-65 0 0" scale=".3 .3 .3"></a-text> 
-                <a-image id="box1" class="clickable box" button ytid="qycioRpvUoA" src="#arthumb" position="-0.75 0 0" rotation="25 0 0" scale="1 1 1"></a-image> 
-                <a-text class="box" value="Look closer for a video on Sustainability" position="0.3 .75 0" scale=".3 .3 .3"></a-text>
+                <a-text class="box" value="Look closer for a word from Bob Blue" position="-1.2 .75 0" rotation="0 0 0" scale=".3 .3 .3"></a-text> <!---65 0 0 , .3 .3 .3--> 
+                <a-image id="box1" class="clickable box" button ytid="qycioRpvUoA" src="#arthumb" position="-0.75 0 -2.5" rotation="25 0 0" scale="1 1 1"></a-image> <!---1 1 1 scale-->
+                <a-text class="box" value="Look closer for a video on Sustainability" position="0 1.25 0" scale=".3 .3 .3"></a-text>
                 <a-entity
                 id="box2" class="clickable box" 
                 gltf-model="assets/sustainabilitywindmill.gltf"
                 scale=".2 .2 .2"
                 animation-mixer
-                position=".75 .75 -.5"
+                position=".75 .5 -2"
                 change-color-on-click
                 ytid="2ZSE9TxQ-3Q"
                 button>
